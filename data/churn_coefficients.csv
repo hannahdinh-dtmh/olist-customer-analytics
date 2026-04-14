@@ -1,0 +1,7 @@
+Feature,Coefficient,Impact
+Frequency,0.01439830492929461,Increases churn risk
+Avg Review Score,-0.02357530862415085,Reduces churn risk
+Monetary,-0.03652174289704558,Reduces churn risk
+Avg Delay Days,0.05627310684014111,Increases churn risk
+Late Pct,-0.06784279578507063,Reduces churn risk
+Recency Days,35.997628797977384,Increases churn risk
