@@ -1,0 +1,27 @@
+# Raw Olist source files (too large — download from Kaggle)
+data/olist_*.csv
+data/product_category_name_translation.csv
+data/*.xlsx
+
+# Keep the data folder and processed outputs for Streamlit Cloud
+!data/.gitkeep
+!data/master_df.csv
+!data/rfm_df.csv
+!data/churn_coefficients.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+
+# macOS
+.DS_Store
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Jupyter
+.ipynb_checkpoints/
