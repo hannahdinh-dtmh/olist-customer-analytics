@@ -11,20 +11,20 @@ Olist delivery & RFM/
 ├── data_prep.py          # Data pipeline: merge → RFM → delivery → churn model
 ├── app.py                # Streamlit dashboard (5 tabs)
 ├── requirements.txt      # Python dependencies
-├── data/                 # Place Kaggle CSV files here (not tracked in git)
-│   ├── olist_orders_dataset.csv
-│   ├── olist_order_items_dataset.csv
-│   ├── olist_customers_dataset.csv
-│   ├── olist_order_payments_dataset.csv
-│   ├── olist_order_reviews_dataset.csv
-│   ├── olist_products_dataset.csv
-│   ├── olist_sellers_dataset.csv
-│   ├── olist_geolocation_dataset.csv
-│   └── product_category_name_translation.csv
-└── data/                 # Generated outputs (after running data_prep.py)
+└── data/
+    │   ── Raw inputs (download from Kaggle, not tracked in git) ──
+    ├── olist_orders_dataset.csv
+    ├── olist_order_items_dataset.csv
+    ├── olist_customers_dataset.csv
+    ├── olist_order_payments_dataset.csv
+    ├── olist_order_reviews_dataset.csv
+    ├── olist_products_dataset.csv
+    ├── olist_sellers_dataset.csv
+    ├── product_category_name_translation.csv
+    │   ── Generated outputs (committed to git) ──
     ├── master_df.csv         # Order-level enriched dataset
     ├── rfm_df.csv            # Customer-level RFM + churn predictions
-    └── churn_coefficients.csv# Model feature importances
+    └── churn_coefficients.csv  # Model feature importances
 ```
 
 ---
@@ -33,7 +33,7 @@ Olist delivery & RFM/
 
 **Source:** [Kaggle — Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
-**Coverage:** 99,441 orders from 2016–2018 across multiple Brazilian marketplaces, with 9 linked tables covering customers, orders, payments, reviews, products, sellers, and geolocation.
+**Coverage:** 99,441 orders from 2016–2018 across multiple Brazilian marketplaces, with 8 linked tables covering customers, orders, payments, reviews, products, sellers, and product categories. (The geolocation file from the Kaggle download is not used in this analysis.)
 
 ---
 
@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 **2. Download the Olist dataset**
 
-Download from [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), unzip, and place all 9 CSV files into the `data/` folder.
+Download from [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), unzip, and place the 8 CSV files listed above into the `data/` folder. (You can skip `olist_geolocation_dataset.csv` — it is not used.)
 
 **3. Run the data pipeline**
 ```bash
