@@ -41,7 +41,9 @@ def load_olist():
         "order_delivered_carrier_date", "order_delivered_customer_date",
         "order_estimated_delivery_date",
     ]
-    orders   = pd.read_csv(f"{DATA_DIR}/olist_orders_dataset.csv", parse_dates=date_cols)
+    orders = pd.read_csv(f"{DATA_DIR}/olist_orders_dataset.csv")
+    for col in date_cols:
+        orders[col] = pd.to_datetime(orders[col], format="%Y-%m-%d %H:%M:%S", errors="coerce")
     items    = pd.read_csv(f"{DATA_DIR}/olist_order_items_dataset.csv")
     custs    = pd.read_csv(f"{DATA_DIR}/olist_customers_dataset.csv")
     payments = pd.read_csv(f"{DATA_DIR}/olist_order_payments_dataset.csv")
