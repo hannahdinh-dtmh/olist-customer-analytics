@@ -112,7 +112,16 @@ def load_rfm():
 @st.cache_data
 def load_coef():
     p = os.path.join(DATA_DIR, "churn_coefficients.csv")
-    return pd.read_csv(p) if os.path.exists(p) else None
+    if not os.path.exists(p):
+        return None
+    df = pd.read_csv(p)
+    # Drop unnamed index column if present (saved with index=True)
+    df = df.loc[:, ~df.columns.str.startswith("Unnamed")]
+    # Normalise column names in case they differ
+    df.columns = [c.strip() for c in df.columns]
+    if "Coefficient" not in df.columns and len(df.columns) == 2:
+        df.columns = ["Feature", "Coefficient"]
+    return df if "Coefficient" in df.columns else None
 
 master_df = load_master()
 rfm_df    = load_rfm()
