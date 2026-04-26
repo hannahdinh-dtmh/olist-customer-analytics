@@ -272,7 +272,7 @@ with t1:
                      color="Revenue", color_continuous_scale=["#1C2A4A","#4C8BF5","#00C49F"],
                      template=PT, text="Revenue",
                      labels={"Revenue":"Revenue (R$)","State":""})
-        fig.update_traces(texttemplate="R$%{text:,.0f}", textposition="outside")
+        fig.update_traces(texttemplate="R$%{x:,.0f}", textposition="outside")
         fig.update_layout(height=300, showlegend=False, coloraxis_showscale=False,
                           margin=dict(t=10,b=10), xaxis=dict(range=[0, state_rev["Revenue"].max()*1.15]))
         st.plotly_chart(fig, use_container_width=True)
@@ -310,14 +310,14 @@ with t2:
             color="Avg_Revenue",
             color_continuous_scale=["#1C2A4A","#4C8BF5","#00C49F","#FFB347","#FF6B6B"],
             color_continuous_midpoint=seg_agg["Avg_Revenue"].median(),
-            custom_data=["Avg_Revenue","Avg_Recency","Avg_Freq","Avg_Review"],
+            custom_data=["Avg_Revenue","Avg_Recency","Avg_Freq","Avg_Review","Customers"],
             template=PT,
         )
         fig.update_traces(
-            texttemplate="<b>%{label}</b><br>%{value:,} customers",
+            texttemplate="<b>%{label}</b><br>%{customdata[4]:,} customers",
             hovertemplate=(
                 "<b>%{label}</b><br>"
-                "Customers: %{value:,}<br>"
+                "Customers: %{customdata[4]:,}<br>"
                 "Avg Revenue: R$%{customdata[0]:.2f}<br>"
                 "Avg Recency: %{customdata[1]:.0f} days<br>"
                 "Avg Frequency: %{customdata[2]:.1f} orders<br>"
@@ -499,7 +499,7 @@ with t3:
                          color_continuous_scale=["#FF6B6B","#FFB347","#00C49F"],
                          template=PT, text="on_time_rate",
                          labels={"on_time_rate":"On-Time %","customer_state":""})
-            fig.update_traces(texttemplate="%{text:.1f}%", textposition="outside")
+            fig.update_traces(texttemplate="%{x:.1f}%", textposition="outside")
             fig.update_layout(height=400, showlegend=False, coloraxis_showscale=False,
                               margin=dict(t=10,b=10), xaxis=dict(range=[0,105]))
             st.plotly_chart(fig, use_container_width=True)
@@ -519,7 +519,7 @@ with t3:
                          color_continuous_scale=["#FFB347","#FF6B6B"],
                          template=PT, text="avg_delay",
                          labels={"avg_delay":"Avg Delay (days)","category":""})
-            fig.update_traces(texttemplate="%{text:.1f}d", textposition="outside")
+            fig.update_traces(texttemplate="%{x:.1f}d", textposition="outside")
             fig.update_layout(height=400, showlegend=False, coloraxis_showscale=False,
                               margin=dict(t=10,b=10))
             st.plotly_chart(fig, use_container_width=True)
@@ -609,7 +609,7 @@ with t4:
                 template=PT, text="avg_churn_prob",
                 labels={"avg_churn_prob":"Avg Churn Probability","Segment":""},
             )
-            fig.update_traces(texttemplate="%{text:.0%}", textposition="outside")
+            fig.update_traces(texttemplate="%{x:.0%}", textposition="outside")
             fig.update_layout(height=400, showlegend=False,
                               margin=dict(t=10,b=10),
                               xaxis=dict(range=[0,1.1], tickformat=".0%"))
@@ -628,7 +628,7 @@ with t4:
                 template=PT, text="Coefficient",
                 labels={"Coefficient":"Model Coefficient (positive = increases churn risk)"},
             )
-            fig.update_traces(texttemplate="%{text:.3f}", textposition="outside")
+            fig.update_traces(texttemplate="%{x:.3f}", textposition="outside")
             fig.update_layout(height=360, showlegend=False, coloraxis_showscale=False,
                               margin=dict(t=10,b=10))
             st.plotly_chart(fig, use_container_width=True)
@@ -710,7 +710,7 @@ with t5:
                      color="revenue", color_continuous_scale=["#1C2A4A","#4C8BF5","#00C49F"],
                      template=PT, text="revenue",
                      labels={"revenue":"Revenue (R$)","State":""})
-        fig.update_traces(texttemplate="R$%{text:,.0f}", textposition="outside")
+        fig.update_traces(texttemplate="R$%{x:,.0f}", textposition="outside")
         fig.update_layout(height=520, showlegend=False, coloraxis_showscale=False,
                           margin=dict(t=10,b=10),
                           xaxis=dict(range=[0, top_states_rev["revenue"].max()*1.2]))
@@ -724,7 +724,7 @@ with t5:
                      color_continuous_scale=["#FF6B6B","#FFB347","#00C49F"],
                      template=PT, text="on_time_rate",
                      labels={"on_time_rate":"On-Time Rate (%)","State":""})
-        fig.update_traces(texttemplate="%{text:.1f}%", textposition="outside")
+        fig.update_traces(texttemplate="%{x:.1f}%", textposition="outside")
         fig.update_layout(height=520, showlegend=False, coloraxis_showscale=False,
                           margin=dict(t=10,b=10), xaxis=dict(range=[0,110]))
         st.plotly_chart(fig, use_container_width=True)
