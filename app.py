@@ -102,6 +102,10 @@ def load_master():
     ])
     df["order_month"] = df["order_purchase_timestamp"].dt.to_period("M").astype(str)
     df["order_year"]  = df["order_purchase_timestamp"].dt.year
+    # CSV loses bool dtype — restore it so bitwise ~ works correctly
+    for col in ["is_late", "is_early"]:
+        if col in df.columns:
+            df[col] = df[col].fillna(False).astype(bool)
     return df
 
 @st.cache_data
